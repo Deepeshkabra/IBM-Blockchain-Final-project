@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduChain - Blockchain Certificate Verification</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduChain</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#issue" class="nav-link" data-section="issue">
+                        <i class="fas fa-certificate"></i> Issue Certificate
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#verify" class="nav-link" data-section="verify">
+                        <i class="fas fa-shield-alt"></i> Verify Certificate
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#explorer" class="nav-link" data-section="explorer">
+                        <i class="fas fa-search"></i> Blockchain Explorer
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>EduChain</h1>
+                    <p class="hero-subtitle">Blockchain-Based Certificate Verification System</p>
+                    <p class="hero-description">
+                        Secure, transparent, and tamper-proof academic certificate verification using custom blockchain technology.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showSection('issue')">
+                            <i class="fas fa-certificate"></i> Issue Certificate
+                        </button>
+                        <button class="btn btn-secondary" onclick="showSection('verify')">
+                            <i class="fas fa-shield-alt"></i> Verify Certificate
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Dashboard -->
+            <div class="stats-container">
+                <h2>Blockchain Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-blocks">0</h3>
+                            <p>Total Blocks</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-certificates">0</h3>
+                            <p>Certificates Issued</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-institutions">0</h3>
+                            <p>Institutions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="chain-status">Valid</h3>
+                            <p>Chain Status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Issue Certificate Section -->
+        <section id="issue" class="section">
+            <div class="container">
+                <h2><i class="fas fa-certificate"></i> Issue New Certificate</h2>
+                <p class="section-description">Add a new academic certificate to the blockchain</p>
+                
+                <form id="certificate-form" class="certificate-form">
+                    <div class="form-group">
+                        <label for="student-name">
+                            <i class="fas fa-user"></i> Student Name
+                        </label>
+                        <input type="text" id="student-name" name="studentName" required 
+                               placeholder="Enter student's full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institution-name">
+                            <i class="fas fa-university"></i> Institution Name
+                        </label>
+                        <input type="text" id="institution-name" name="institutionName" required 
+                               placeholder="Enter institution name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-name">
+                            <i class="fas fa-book"></i> Course Name
+                        </label>
+                        <input type="text" id="course-name" name="courseName" required 
+                               placeholder="Enter course/degree name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grade">
+                            <i class="fas fa-star"></i> Grade/Score
+                        </label>
+                        <input type="text" id="grade" name="grade" required 
+                               placeholder="Enter grade or score">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issue-date">
+                            <i class="fas fa-calendar"></i> Issue Date
+                        </label>
+                        <input type="date" id="issue-date" name="issueDate" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-plus"></i> Issue Certificate
+                    </button>
+                </form>
+
+                <div id="issue-result" class="result-container" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Verify Certificate Section -->
+        <section id="verify" class="section">
+            <div class="container">
+                <h2><i class="fas fa-shield-alt"></i> Verify Certificate</h2>
+                <p class="section-description">Verify the authenticity of a certificate using its ID</p>
+                
+                <div class="verify-form">
+                    <div class="form-group">
+                        <label for="certificate-id">
+                            <i class="fas fa-id-card"></i> Certificate ID
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="certificate-id" placeholder="Enter certificate ID (e.g., CERT-ABC123)">
+                            <button type="button" class="btn btn-primary" onclick="verifyCertificate()">
+                                <i class="fas fa-search"></i> Verify
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="verify-result" class="result-container" style="display: none;"></div>
+
+                <!-- Search Options -->
+                <div class="search-options">
+                    <h3>Search Certificates</h3>
+                    <div class="search-tabs">
+                        <button class="tab-btn active" onclick="showSearchTab('student')">By Student</button>
+                        <button class="tab-btn" onclick="showSearchTab('institution')">By Institution</button>
+                        <button class="tab-btn" onclick="showSearchTab('all')">All Certificates</button>
+                    </div>
+
+                    <div id="search-student" class="search-tab active">
+                        <div class="form-group">
+                            <input type="text" id="student-search" placeholder="Enter student name">
+                            <button class="btn btn-secondary" onclick="searchByStudent()">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="search-institution" class="search-tab">
+                        <div class="form-group">
+                            <input type="text" id="institution-search" placeholder="Enter institution name">
+                            <button class="btn btn-secondary" onclick="searchByInstitution()">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="search-all" class="search-tab">
+                        <button class="btn btn-secondary" onclick="getAllCertificates()">
+                            <i class="fas fa-list"></i> Load All Certificates
+                        </button>
+                    </div>
+                </div>
+
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </section>
+
+        <!-- Blockchain Explorer Section -->
+        <section id="explorer" class="section">
+            <div class="container">
+                <h2><i class="fas fa-search"></i> Blockchain Explorer</h2>
+                <p class="section-description">Explore the complete blockchain structure</p>
+                
+                <div class="explorer-controls">
+                    <button class="btn btn-primary" onclick="loadBlockchain()">
+                        <i class="fas fa-sync"></i> Refresh Blockchain
+                    </button>
+                    <button class="btn btn-secondary" onclick="validateBlockchain()">
+                        <i class="fas fa-shield-check"></i> Validate Chain
+                    </button>
+                </div>
+
+                <div id="blockchain-container" class="blockchain-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading blockchain...
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EduChain - Blockchain Certificate Verification System</p>
+            <p>Built with custom JavaScript blockchain technology</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/blockchain-visualizer.js"></script>
+</body>
+</html>
